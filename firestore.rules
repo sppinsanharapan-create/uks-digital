@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is authenticated
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Master access: authenticated users with school accounts
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /students/{studentId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /visits/{visitId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /health_screenings/{screeningId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /medicines_inventory/{medicineId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /inventory_logs/{logId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /first_aid_incidents/{incidentId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /health_programs/{programId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /audit_logs/{auditId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    match /settings/{settingId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+  }
+}

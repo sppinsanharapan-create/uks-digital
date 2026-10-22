@@ -1,0 +1,270 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profiles and roles for UKS Digital",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["super_admin", "admin_uks", "guru", "kepala_sekolah", "orang_tua"] },
+        "unit": { "type": "string" },
+        "assignedClass": { "type": "string" },
+        "linkedStudentNis": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Master student records across RAIT, SDIT, and SMPIT",
+      "type": "object",
+      "properties": {
+        "nis": { "type": "string" },
+        "namaLengkap": { "type": "string" },
+        "jenjang": { "type": "string", "enum": ["RAIT", "SDIT", "SMPIT"] },
+        "kelas": { "type": "string" },
+        "jenisKelamin": { "type": "string", "enum": ["L", "P"] },
+        "tanggalLahir": { "type": "string" },
+        "namaWali": { "type": "string" },
+        "noTeleponDarurat": { "type": "string" },
+        "emailWali": { "type": "string" },
+        "alamat": { "type": "string" },
+        "golonganDarah": { "type": "string" },
+        "alergi": { "type": "string" },
+        "kondisiKhusus": { "type": "string" },
+        "catatanKebutuhanKhusus": { "type": "string" },
+        "statusAktif": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["nis", "namaLengkap", "jenjang", "kelas", "jenisKelamin", "namaWali", "noTeleponDarurat"]
+    },
+    "UksVisit": {
+      "title": "UksVisit",
+      "description": "Daily UKS student visits log and treatment status",
+      "type": "object",
+      "properties": {
+        "nomorKunjungan": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentNis": { "type": "string" },
+        "studentNama": { "type": "string" },
+        "jenjang": { "type": "string" },
+        "kelas": { "type": "string" },
+        "waktuMasuk": { "type": "string" },
+        "waktuKeluar": { "type": "string" },
+        "pengantar": { "type": "string" },
+        "keluhan": { "type": "string" },
+        "kategoriKeluhan": { "type": "string" },
+        "suhuTubuh": { "type": "number" },
+        "tekananDarah": { "type": "string" },
+        "tingkatUrgensi": { "type": "string", "enum": ["ringan", "sedang", "darurat"] },
+        "pertolonganPertama": { "type": "string" },
+        "petugas": { "type": "string" },
+        "status": { "type": "string", "enum": ["sedang_ditangani", "istirahat_dipantau", "kembali_ke_kelas", "dijemput_orang_tua", "dirujuk_ke_faskes"] },
+        "catatan": { "type": "string" },
+        "konfirmasiPenyerahan": { "type": "string" },
+        "isEmergency": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["nomorKunjungan", "studentId", "studentNama", "jenjang", "kelas", "keluhan", "status", "petugas"]
+    },
+    "HealthScreening": {
+      "title": "HealthScreening",
+      "description": "Periodic health checks, height, weight, vision, hygiene, dental",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentNis": { "type": "string" },
+        "studentNama": { "type": "string" },
+        "jenjang": { "type": "string" },
+        "kelas": { "type": "string" },
+        "tanggal": { "type": "string" },
+        "tinggiBadan": { "type": "number" },
+        "beratBadan": { "type": "number" },
+        "suhuTubuh": { "type": "number" },
+        "pemeriksaanPenglihatan": { "type": "string" },
+        "kebersihanDiri": { "type": "string" },
+        "kesehatanGigiMulut": { "type": "string" },
+        "catatanPemeriksaan": { "type": "string" },
+        "rekomendasiTindakLanjut": { "type": "string" },
+        "petugasPemeriksa": { "type": "string" },
+        "tahunAjaran": { "type": "string" },
+        "semester": { "type": "string" }
+      },
+      "required": ["studentId", "studentNama", "tanggal", "tinggiBadan", "beratBadan", "petugasPemeriksa"]
+    },
+    "MedicineItem": {
+      "title": "MedicineItem",
+      "description": "Medicines and medical supplies inventory in UKS",
+      "type": "object",
+      "properties": {
+        "namaBarang": { "type": "string" },
+        "kategori": { "type": "string" },
+        "satuan": { "type": "string" },
+        "jumlahStok": { "type": "number" },
+        "stokMinimum": { "type": "number" },
+        "tanggalKadaluwarsa": { "type": "string" },
+        "nomorBatch": { "type": "string" },
+        "tanggalMasuk": { "type": "string" },
+        "sumberPengadaan": { "type": "string" },
+        "petugasPencatat": { "type": "string" },
+        "lokasiPenyimpanan": { "type": "string" }
+      },
+      "required": ["namaBarang", "kategori", "satuan", "jumlahStok", "stokMinimum", "tanggalKadaluwarsa"]
+    },
+    "InventoryLog": {
+      "title": "InventoryLog",
+      "description": "Stock in and stock out movements for medications and first aid items",
+      "type": "object",
+      "properties": {
+        "barangId": { "type": "string" },
+        "namaBarang": { "type": "string" },
+        "jenis": { "type": "string", "enum": ["masuk", "keluar"] },
+        "jumlah": { "type": "number" },
+        "tanggal": { "type": "string" },
+        "keterangan": { "type": "string" },
+        "petugas": { "type": "string" }
+      },
+      "required": ["barangId", "namaBarang", "jenis", "jumlah", "tanggal", "petugas"]
+    },
+    "FirstAidIncident": {
+      "title": "FirstAidIncident",
+      "description": "Emergency and first aid action reports with incident chronology and follow-up",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentNama": { "type": "string" },
+        "jenjang": { "type": "string" },
+        "kelas": { "type": "string" },
+        "waktuKejadian": { "type": "string" },
+        "lokasiKejadian": { "type": "string" },
+        "kronologi": { "type": "string" },
+        "keluhanKondisi": { "type": "string" },
+        "tindakanAwal": { "type": "string" },
+        "petugas": { "type": "string" },
+        "kontakWaliDihubungi": { "type": "string" },
+        "hasilPemantauan": { "type": "string" },
+        "rekomendasiLanjutan": { "type": "string" },
+        "statusSelesai": { "type": "boolean" },
+        "isEmergency": { "type": "boolean" }
+      },
+      "required": ["studentId", "studentNama", "waktuKejadian", "lokasiKejadian", "tindakanAwal", "petugas"]
+    },
+    "ParentNotification": {
+      "title": "ParentNotification",
+      "description": "Notifications dispatched to parents/guardians regarding student condition or pickup",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentNama": { "type": "string" },
+        "nis": { "type": "string" },
+        "jenis": { "type": "string" },
+        "judul": { "type": "string" },
+        "pesan": { "type": "string" },
+        "nomorWali": { "type": "string" },
+        "statusKirim": { "type": "string" },
+        "channel": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "dibaca": { "type": "boolean" }
+      },
+      "required": ["studentNama", "judul", "pesan", "timestamp"]
+    },
+    "HealthProgram": {
+      "title": "HealthProgram",
+      "description": "School health programs (PHBS, sikat gigi massal, donor, imunisasi puskesmas, etc.)",
+      "type": "object",
+      "properties": {
+        "namaKegiatan": { "type": "string" },
+        "jenisProgram": { "type": "string" },
+        "tanggal": { "type": "string" },
+        "penanggungJawab": { "type": "string" },
+        "sasaran": { "type": "string" },
+        "anggaran": { "type": "number" },
+        "jumlahPeserta": { "type": "number" },
+        "laporanHasil": { "type": "string" },
+        "status": { "type": "string", "enum": ["direncanakan", "berlangsung", "selesai"] }
+      },
+      "required": ["namaKegiatan", "tanggal", "penanggungJawab", "sasaran", "status"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Audit trail of security and system actions",
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "action": { "type": "string" },
+        "detail": { "type": "string" }
+      },
+      "required": ["timestamp", "userId", "action"]
+    },
+    "SchoolSetting": {
+      "title": "SchoolSetting",
+      "description": "System settings and school identity configuration",
+      "type": "object",
+      "properties": {
+        "yayasanName": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "tagline": { "type": "string" },
+        "alamat": { "type": "string" },
+        "telepon": { "type": "string" },
+        "email": { "type": "string" },
+        "tahunAjaranAktif": { "type": "string" },
+        "puskesmasRujukan": { "type": "string" },
+        "teleponAmbulans": { "type": "string" }
+      },
+      "required": ["yayasanName", "schoolName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and RBAC permissions"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Master student health and identity records"
+    },
+    "/visits/{visitId}": {
+      "schema": "UksVisit",
+      "description": "Student UKS visit logs"
+    },
+    "/health_screenings/{screeningId}": {
+      "schema": "HealthScreening",
+      "description": "Periodic health screenings"
+    },
+    "/medicines_inventory/{medicineId}": {
+      "schema": "MedicineItem",
+      "description": "Medicines and first aid items inventory"
+    },
+    "/inventory_logs/{logId}": {
+      "schema": "InventoryLog",
+      "description": "Inventory movement audit logs"
+    },
+    "/first_aid_incidents/{incidentId}": {
+      "schema": "FirstAidIncident",
+      "description": "First aid and emergency incident logs"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "ParentNotification",
+      "description": "Parent and guardian notifications"
+    },
+    "/health_programs/{programId}": {
+      "schema": "HealthProgram",
+      "description": "School health promotion programs"
+    },
+    "/audit_logs/{auditId}": {
+      "schema": "AuditLog",
+      "description": "System audit trail records"
+    },
+    "/settings/{settingId}": {
+      "schema": "SchoolSetting",
+      "description": "System settings and institution metadata"
+    }
+  }
+}

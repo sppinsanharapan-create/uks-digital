@@ -1,0 +1,6 @@
+{
+  "name": "UKS Digital Insan Harapan Batam",
+  "description": "Sistem Informasi Usaha Kesehatan Sekolah (UKS) Digital SIT Insan Harapan Batam - RAIT, SDIT, SMPIT Yayasan Harapan Ibu Kepri",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
